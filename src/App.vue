@@ -2,13 +2,26 @@
 import navbar from "./components/navbar.vue";
 import hamburger from "./components/hamburger.vue";
 import { translate } from "./translate.js";
+import Sidebar from "./components/sidebar.vue"
 export default {
+  data() {
+    return {
+      isModalOpen: false,
+    }
+  },
   name: "HeroSection",
   components: {
     navbar,
     hamburger,
+    Sidebar
+  },
+  mounted() {
+    window.scrollTo(0, 100);
   },
   methods: {
+    toggleModal(){
+      this.isModalOpen = !this.isModalOpen;
+    },
     handleLanguageChange(language) {
       this.$forceUpdate(); // Re-render the component to update translations
     },
@@ -20,9 +33,12 @@ export default {
 </script>
 
 <template>
+  <navbar
+    @languageChanged="handleLanguageChange"
+    @toggle-modal="toggleModal" 
+  />
   <header>
     <div class="container">
-      <navbar @languageChanged="handleLanguageChange" />
     </div>
     <div class="hero">
       <div class="stars"></div>
@@ -41,33 +57,54 @@ export default {
     </div>
   </header>
   <main>
-    <section>
-      <div>
-        <h1>
-          {{ t("section1_h1") }}
-        </h1>
-        <p>{{ t("section1_p") }}</p>
-        <div>
-          <button>{{ t("section1_phone") }}</button>
-          <button>{{ t("section1_acc") }}</button>
+    <div class="container">
+      <section class="section1">
+        <div class="section1__box">
+          <h1>
+            {{ t("section1_h1") }}
+          </h1>
+          <p>{{ t("section1_p") }}</p>
+          <div>
+            <button>
+              <span
+              ><img src="./assets/images/png/telephone.png" alt=""
+              /></span>
+              {{ t("section1_phone") }}
+            </button>
+            <button>
+              <span><img src="./assets/images/png/right.png" alt="" /></span>
+              {{ t("section1_acc") }}
+            </button>
+          </div>
         </div>
-      </div>
-      <div></div>
-    </section>
+        <div class="section1__box2">
+          <img src="./assets/images/png/section1_img.png" alt="" />
+        </div>
+      </section>
+    </div>
+    
+    <teleport to='body'>
+        <Sidebar v-if="isModalOpen" @close-modal="toggleModal"/>
+      </teleport>
   </main>
 </template>
 
 <style scoped lang="scss">
+header{
+  // overflow: hidden;
+  background-image: url("./assets/images/png/stars.png");
+}
 .hero {
   position: relative;
   width: 100%;
+  // height: 90VH;
   height: calc(100vh - 70px);
   // overflow: hidden;
   .mouse_warn {
     text-align: center;
     position: absolute;
     bottom: 15px;
-    left: 45%;
+    left: 44%;
     z-index: 4;
     color: white;
   }
@@ -83,7 +120,7 @@ export default {
     transform: translateX(-50%);
     animation: riseMoon 2.2s ease-out forwards,
       rotateMoon 8s linear infinite 0.4s;
-    filter: drop-shadow(0 0 45px #ffffff4d);
+    filter: drop-shadow(0 0 25px #ffffff4d);
   }
 
   .mountains {
@@ -93,9 +130,12 @@ export default {
     left: 0;
     width: 100%;
     height: 350px;
-    background: url("./assets/images/png/mountains.png") no-repeat bottom center /
-        cover,
-      linear-gradient(0deg, rgba(0, 0, 0, 0.65), rgba(9, 9, 121, 0) 40%);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 120%
+      ),
+      url("./assets/images/png/mountains.png") no-repeat bottom center / cover;
   }
 
   .illuminated-item {
@@ -156,6 +196,65 @@ export default {
   }
   to {
     transform: translateX(-50%) rotate(360deg);
+  }
+}
+main {
+  margin-top: 10rem;
+
+  .section1 {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    &__box {
+      width: 50vw;
+      h1 {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+      p {
+        font-size: 1.4rem;
+        color: #b0b0b0;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+      }
+    }
+    &__box2 {
+      width: 30vw;
+      // height: 400  px;
+      img {
+        width: inherit;
+        height: inherit;
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      border-radius: 10px;
+      padding: 6px 15px;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      span {
+        img {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    button:hover {
+      background-color: #3836364b;
+    }
   }
 }
 </style>

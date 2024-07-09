@@ -1,45 +1,49 @@
 <template>
-  <nav>
-    <div class="menu">
-      <hamburger/>
-    </div>
-    <div class="logo">Menga</div>
-    <ul class="nav-links">
-      <li>
-        <a href="#">{{ t("about_us") }}</a>
-      </li>
-      <li>
-        <a href="#">{{ t("services") }}</a>
-      </li>
-      <li>
-        <a href="#">{{ t("portfolio") }}</a>
-      </li>
-      <li>
-        <a href="#">{{ t("vacancies") }}</a>
-      </li>
-      <li>
-        <a href="#">{{ t("blog") }}</a>
-      </li>
-    </ul>
-    <div class="contact-info">
-      <a href="tel:+998991234567" class="phone-number">+998 99 123 45 67</a>
-      <div class="language-selector-wrapper">
-        <button class="language-selector" @click="toggleDropdown">
-          <img
-            src="../assets/images/png/global.png"
-            alt="Globe Icon"
-            class="globe-icon"
-          />
-          <span>{{ selectedLanguage }}</span>
-        </button>
-        <ul v-if="showDropdown" class="language-dropdown">
-          <li @click="changeLanguage('uz')">UZ</li>
-          <li @click="changeLanguage('ru')">RU</li>
-          <li @click="changeLanguage('en')">EN</li>
+  <div class="parent_nav">
+    <div class="container">
+      <nav>
+        <div class="menu">
+          <hamburger @click="$emit('toggle-modal')" />
+        </div>
+        <div class="logo">Menga</div>
+        <ul class="nav-links">
+          <li>
+            <a href="#">{{ t("about_us") }}</a>
+          </li>
+          <li>
+            <a href="#">{{ t("services") }}</a>
+          </li>
+          <li>
+            <a href="#">{{ t("portfolio") }}</a>
+          </li>
+          <li>
+            <a href="#">{{ t("vacancies") }}</a>
+          </li>
+          <li>
+            <a href="#">{{ t("blog") }}</a>
+          </li>
         </ul>
-      </div>
+        <div class="contact-info">
+          <a href="tel:+998991234567" class="phone-number">+998 99 123 45 67</a>
+          <div class="language-selector-wrapper">
+            <button class="language-selector" @click="toggleDropdown">
+              <img
+                src="../assets/images/png/global.png"
+                alt="Globe Icon"
+                class="globe-icon"
+              />
+              <span>{{ selectedLanguage }}</span>
+            </button>
+            <ul v-if="showDropdown" class="language-dropdown">
+              <li @click="changeLanguage('uz')">UZ</li>
+              <li @click="changeLanguage('ru')">RU</li>
+              <li @click="changeLanguage('en')">EN</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -54,10 +58,18 @@ export default {
       selectedLanguage: getCurrentLanguage(),
     };
   },
-  components:{
+  components: {
     hamburger,
   },
   methods: {
+    toggleModal() {
+      if (!this.showDropdown) {
+        this.$emit("toggle-modal");
+      } else {
+        this.$emit("open-sketch-modal"); // Emit event to open Sketch modal
+      }
+      this.showDropdown = !this.showDropdown;
+    },
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
     },
@@ -75,15 +87,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.parent_nav {
+  background: url(../assets/images/png/stars.png);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 50px;
-  position: relative;
-  z-index: 4; // Navbarning ustki qatlamida bo'lishi uchun z-index qiymatini oshiramiz
   background: transparent;
-  .menu{
+  .menu {
     display: none;
   }
 }
@@ -101,12 +117,11 @@ nav {
 
   li {
     a {
-      color: #fff;
+      color: #ffffffa1;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.04rem;
       font-weight: 500;
       text-transform: uppercase;
-      
     }
   }
 }
@@ -145,7 +160,7 @@ nav {
         width: 20px;
         height: 20px;
       }
-      span{
+      span {
         font-size: 16px;
       }
     }
