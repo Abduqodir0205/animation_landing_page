@@ -3,10 +3,10 @@ import navbar from "./components/navbar.vue";
 import hamburger from "./components/hamburger.vue";
 import { translate } from "./translate.js";
 import Sidebar from "./components/sidebar.vue"
+
 export default {
   data() {
     return {
-      isModalOpen: false,
     }
   },
   name: "HeroSection",
@@ -19,9 +19,7 @@ export default {
     window.scrollTo(0, 100);
   },
   methods: {
-    toggleModal(){
-      this.isModalOpen = !this.isModalOpen;
-    },
+   
     handleLanguageChange(language) {
       this.$forceUpdate(); // Re-render the component to update translations
     },
@@ -46,7 +44,7 @@ export default {
       <div class="mountains"></div>
       <div class="container">
         <div class="illuminated-item">
-          <h2 class="hero-heading">{{ t("about_us") }}</h2>
+          <h2 class="hero-heading ">{{ t("about_us") }}</h2>
         </div>
       </div>
       <div class="spotlight" ref="spotlight"></div>
@@ -83,9 +81,7 @@ export default {
       </section>
     </div>
     
-    <teleport to='body'>
-        <Sidebar v-if="isModalOpen" @close-modal="toggleModal"/>
-      </teleport>
+
   </main>
 </template>
 

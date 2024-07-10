@@ -3,7 +3,7 @@
     <div class="container">
       <nav>
         <div class="menu">
-          <hamburger @click="$emit('toggle-modal')" />
+          <hamburger @click="toggleModal" />
         </div>
         <div class="logo">Menga</div>
         <ul class="nav-links">
@@ -43,33 +43,35 @@
         </div>
       </nav>
     </div>
+    <teleport to="html">
+      <Sidebar v-if="isModalOpen" :language="selectedLanguage"  :isOpen="isModalOpen" />
+    </teleport>
   </div>
 </template>
 
 <script>
 import { setLanguage, translate, getCurrentLanguage } from "../translate";
 import hamburger from "./hamburger.vue";
+import Sidebar from "./sidebar.vue";
 
 export default {
   name: "Navbar",
   data() {
     return {
+      isModalOpen: false,
       showDropdown: false,
       selectedLanguage: getCurrentLanguage(),
     };
   },
   components: {
     hamburger,
+    Sidebar,
   },
   methods: {
     toggleModal() {
-      if (!this.showDropdown) {
-        this.$emit("toggle-modal");
-      } else {
-        this.$emit("open-sketch-modal"); // Emit event to open Sketch modal
-      }
-      this.showDropdown = !this.showDropdown;
+      this.isModalOpen = !this.isModalOpen;
     },
+    
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
     },
@@ -100,7 +102,7 @@ nav {
   padding: 20px 50px;
   background: transparent;
   .menu {
-    display: none;
+    /* display: none; */ /* menu classni hide qilamiz */
   }
 }
 
