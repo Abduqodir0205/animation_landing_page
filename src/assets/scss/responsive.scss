@@ -159,6 +159,25 @@
     height: 350px;
 
   }
+
+  // main section2 imgCollection
+  main{
+    .section2 {
+      &__content {
+        &-imgCollection {
+  
+          &-card {
+            width: 50% !important;
+            height: 25rem;
+          }
+          &-card:hover{
+            width: 100% !important; 
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 655px) {
@@ -249,5 +268,21 @@
 
     bottom: 10px !important;
     left: 50%;
+  }
+
+   // main section2 imgCollection
+   main{
+    .section2 {
+      &__content {
+        &-imgCollection {
+  
+          &-card {
+            width: 100% !important;
+            height: 45vh !important;
+          }
+          
+        }
+      }
+    }
   }
 }
