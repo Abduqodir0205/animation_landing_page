@@ -2,49 +2,53 @@
 import navbar from "./components/navbar.vue";
 import hamburger from "./components/hamburger.vue";
 import { translate } from "./translate.js";
-import Sidebar from "./components/sidebar.vue"
+import Sidebar from "./components/sidebar.vue";
 
 export default {
   data() {
     return {
-    }
+      cards: ["moon.png", "moon.png", "moon.png", "moon.png"]
+    };
   },
   name: "HeroSection",
   components: {
     navbar,
     hamburger,
-    Sidebar
+    Sidebar,
   },
   mounted() {
     window.scrollTo(0, 100);
   },
   methods: {
-   
     handleLanguageChange(language) {
       this.$forceUpdate(); // Re-render the component to update translations
     },
     t(key) {
       return translate(key);
     },
+    getCardImage(card) {
+      try {
+        return require(`./assets/images/png/${card}`);
+      } catch (error) {
+        console.error(`Image not found: ./assets/images/png/${card}.png`);
+        return '';
+      }
+    },
   },
 };
 </script>
 
 <template>
-  <navbar
-    @languageChanged="handleLanguageChange"
-    @toggle-modal="toggleModal" 
-  />
+  <navbar @languageChanged="handleLanguageChange" @toggle-modal="toggleModal" />
   <header>
-    <div class="container">
-    </div>
+    <div class="container"></div>
     <div class="hero">
       <div class="stars"></div>
       <div class="moon"></div>
       <div class="mountains"></div>
       <div class="container">
         <div class="illuminated-item">
-          <h2 class="hero-heading ">{{ t("about_us") }}</h2>
+          <h2 class="hero-heading">{{ t("about_us") }}</h2>
         </div>
       </div>
       <div class="spotlight" ref="spotlight"></div>
@@ -65,7 +69,7 @@ export default {
           <div>
             <button>
               <span
-              ><img src="./assets/images/png/telephone.png" alt=""
+                ><img src="./assets/images/png/telephone.png" alt=""
               /></span>
               {{ t("section1_phone") }}
             </button>
@@ -80,13 +84,31 @@ export default {
         </div>
       </section>
     </div>
-    
 
+    <div class="container">
+      <section class="section2" >
+        <div class="section2__content">
+          <h1>{{ t("about_us") }}</h1>
+          <p>{{ t("about_us-label") }}</p>
+
+          <div class="section2__content-imgCollection" style="background-color: red">
+            <!-- <div v-for="(item, index) in cards"  class="section2__content-imgCollection-card"> -->
+              <!-- <img   src="./assets/images/png/card1.png" alt=""> -->
+              <!-- <img   :src="`./assets/images/png/${item}.png`" alt=""> -->
+              
+            <!-- </div> -->
+            <div v-for="(item, index) in cards" :key="index" class="section2__content-imgCollection-card" style="background-color: aliceblue">
+              <img :src="getCardImage(item)" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 </template>
 
 <style scoped lang="scss">
-header{
+header {
   // overflow: hidden;
   background-image: url("./assets/images/png/stars.png");
 }
@@ -201,7 +223,7 @@ main {
     max-width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
 
     &__box {
@@ -250,6 +272,26 @@ main {
 
     button:hover {
       background-color: #3836364b;
+    }
+  }
+
+  .section2 {
+    &__content {
+      &-imgCollection {
+        display: flex;
+        width: 100%;
+        border-radius: 2rem;
+        overflow-y: hidden;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &-card {
+          height: 50rem;
+          position: relative;
+          width: 25%;
+          transition: all 0.3s ease;
+          flex-shrink: 0;
+        }
+      }
     }
   }
 }

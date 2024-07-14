@@ -43,7 +43,7 @@
         </div>
       </nav>
     </div>
-    <teleport to="html">
+    <teleport to="body">
       <Sidebar v-if="isModalOpen" :language="selectedLanguage"  :isOpen="isModalOpen" />
     </teleport>
   </div>
@@ -99,10 +99,10 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 0;
   background: transparent;
   .menu {
-    /* display: none; */ /* menu classni hide qilamiz */
+    display: none; 
   }
 }
 

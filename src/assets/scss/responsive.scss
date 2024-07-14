@@ -181,6 +181,27 @@
     bottom: 10px !important;
     left: 50%;
   }
+  main{
+    .section1{
+      justify-content: start !important;
+      &__box{
+      width: 100% !important;
+        h1{
+          font-size: 5.5vw !important;
+        }
+        p{
+          font-size: 3.6vw !important;
+        }
+        button{
+          font-size: 3.2vw !important;
+
+        }
+      }
+      &__box2{
+        display: none;
+      }
+    }
+  }
 }
 
 @media (max-width: 600px) {
