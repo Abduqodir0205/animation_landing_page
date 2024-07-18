@@ -13,5 +13,14 @@
     "section1_acc": "Our profile",
     "section3_more-txt": "More",
     "section3_portfolio": "Portfolio",
-    "section3_btn-txt": "All projects"
+    "section3_btn-txt": "All projects",
+    "Services_section4": "Services",
+    "section4_card_title": "IT project management",
+    "section4_card_label": "Management of projects related to digitization in various spheres",
+    "ourPartners_section5": "Our Partners",
+    "contact_title": "Do you have a project?",
+    "contact_label": "We have a solution",
+    "contact_nameInput": "Your name",
+    "contact_form-btn": "Submit"
+
 }

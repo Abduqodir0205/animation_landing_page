@@ -13,7 +13,13 @@
     "section1_acc": "Bizning profilimiz",
     "section3_more-txt": "Ko'proq",
     "section3_portfolio": "Portfolio",
-    "section3_btn-txt": "Barcha loyhalar"
-
-
+    "section3_btn-txt": "Barcha loyhalar",
+    "Services_section4": "Xizmatlar",
+    "section4_card_title": "IT loyihalarni boshqarish",
+    "section4_card_label": "Turli sferalardagi raqamlashtirish bilan bog'liq loyihalarni boshqarish",
+    "ourPartners_section5": "Bizning homiylar",
+    "contact_title": "Loyhangiz bormi?",
+    "contact_label": "Bizda yechim bor",
+    "contact_nameInput": "Ismingiz",
+    "contact_form-btn": "Yuborish"
 }

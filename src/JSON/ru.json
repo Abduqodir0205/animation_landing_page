@@ -13,6 +13,18 @@
     "section1_acc": "Наш профиль",
     "section3_more-txt": "Больше",
     "section3_portfolio": "Портфолио",
-    "section3_btn-txt": "Все проекты"
+    "section3_btn-txt": "Все проекты",
+    "Services_section4": "Услуги",
+    "section4_card_title": "Управление ИТ-проектами",
+    "section4_card_label": "Управление проектами, связанными с цифровизацией в различных сферах,",
+    "ourPartners_section5": "Наши спонсоры",
+    "contact_title": "У вас есть проект?",
+    "contact_label": "У нас есть решение",
+    "contact_nameInput": "Ваше имя",
+    "contact_form-btn": "Отправить"
+
+
+
+    
 
 }

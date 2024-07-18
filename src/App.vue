@@ -29,9 +29,9 @@ export default {
     hamburger,
     Sidebar,
   },
-  mounted() {
-    window.scrollTo(0, 100);
-  },
+  // mounted() {
+  //   window.scrollTo(0, 100);
+  // },
   methods: {
     handleLanguageChange(language) {
       this.$forceUpdate(); // Re-render the component to update translations
@@ -147,9 +147,87 @@ export default {
           </div>
         </div>
         <button class="section3__btn">
-          <span><img src="./assets/images/png/right.png" alt=""></span>
+          <span><img src="./assets/images/png/right.png" alt="" /></span>
           {{ t("section3_btn-txt") }}
         </button>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="section4">
+        <h1>{{ t("Services_section4") }}</h1>
+        <div class="section4__servic-content">
+          <div
+            v-for="(item, index) in 6"
+            :key="index"
+            class="section4__servic-content-ServiceCard"
+          >
+            <span class="span_parent">
+              <span class="section4__servic-content-ServiceCard_cardTitle"
+                ><h3>{{ t("section4_card_title") }}</h3></span
+              >
+              <div class="section4__servic-content-ServiceCard-icon">
+                <img src="./assets/images/png/right.png" alt="" />
+              </div>
+            </span>
+            <p class="text">
+              {{ t("section4_card_label") }}
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="ourPartners">
+        <h1>{{ t("ourPartners_section5") }}</h1>
+        <div class="ourPartners__content">
+          <div
+            class="ourPartners__content_card"
+            v-for="(item, index) in 8"
+            :key="index"
+          >
+            <img
+              src="https://api.softit.uz/media/partner/images/Rectangle6.png"
+              alt="Partner Image"
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container">
+      <section class="contact">
+        <div class="contact__content">
+          <h1>{{ t("contact_title") }}</h1>
+          <p>{{ t("contact_label") }}</p>
+          <span>
+            <form class="contact__content_form">
+              <div class="contact__content_form-inputGroup">
+                <img src="./assets/images/png/user.png" alt="" />
+                <input type="text" :placeholder="t('contact_nameInput')" />
+              </div>
+
+              <div class="contact__content_form-inputGroup">
+                <img
+                  src="./assets/images/png/telephone.png"
+                  style="width: 16px"
+                  alt=""
+                />
+                <input type="text" placeholder="+998" />
+              </div>
+
+              <button>
+                {{ t("contact_form-btn") }}
+              </button>
+            </form>
+            <div class="contact__content_moon">
+              <img src="./assets/images/png/moon.png" alt="" />
+            </div>
+          </span>
+        </div>
       </section>
     </div>
   </main>
@@ -214,8 +292,8 @@ header {
       color: #ffffff70;
       font-family: "Georgia", serif;
       text-transform: uppercase;
-      font-size: 120px;
-      font-weight: bold;
+      font-size: 110px;
+      font-weight: bolder;
       letter-spacing: 1rem;
       padding: 0 3rem;
       transition: text-shadow 0.3s ease;
@@ -355,13 +433,12 @@ main {
 
   .section3 {
     margin-top: 16rem;
-
     &__portfolio-content {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: 16.5vw;
-      grid-gap: 2rem;
-      gap: 2rem;
+      grid-gap: 1rem;
+      gap: 1rem;
     }
     .card:first-child {
       grid-row: 1 / 3;
@@ -423,12 +500,181 @@ main {
     }
     &__btn {
       cursor: pointer;
-      text-transform: capitalize;
-      font-size: 1.6rem;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #af1471,;
+      gap: 1rem;
+      color: white;
+      background: #af1471;
+      border-radius: 0.75rem;
+      border: 1px solid #000;
+      padding: 0.4rem;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+    &__btn:hover {
+      border: 1px solid #fff;
+    }
+  }
+
+  .section4 {
+    margin-top: 15rem;
+    &__servic-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem;
+      &-ServiceCard {
+        padding: 2rem;
+        border-radius: 1.75rem;
+        border: 1px solid transparent;
+        position: relative;
+        transition: border-color 0.4s ease;
+        background: #0d0d0d;
+
+        &:hover {
+          border-color: white;
+          img {
+            transform: rotate(-40deg);
+          }
+        }
+        .span_parent {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        &_cardTitle {
+        }
+        &-icon {
+        }
+        .text {
+          // height: 20vh;
+          // overflow-y: auto;
+        }
+      }
+    }
+  }
+
+  .ourPartners {
+    margin-top: 16rem;
+    &__content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+      &_card {
+        border-radius: 1.5rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        &:hover {
+          img {
+            transform: scale(1.1);
+          }
+        }
+
+        img {
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+      }
+    }
+  }
+
+  .contact {
+    margin-top: 15rem;
+    padding-bottom: 20rem;
+    &__content {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      position: relative;
+      padding: 2.5rem 2rem;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      p {
+        font-size: 1rem;
+        color: #c1c1c1;
+        letter-spacing: 0.03em;
+        line-height: 2.6rem;
+      }
+      &::after {
+        content: "";
+        background-image: url(./assets/images/png/Planet.png);
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        top: 1rem;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+      }
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &_form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        &-inputGroup {
+          &:hover {
+            border-color: gray;
+          }
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          border-radius: 0.5rem;
+          font-size: 1.4rem;
+          position: relative;
+          width: 100%;
+          background: transparent;
+          border: 1px solid rgb(46, 45, 45);
+          padding: 0.7rem 1.3rem;
+          input {
+            background: transparent;
+            border: none;
+            position: relative;
+            z-index: 11;
+            color: white;
+            outline: none;
+          }
+        }
+        button {
+          position: relative;
+          z-index: 4;
+          border: none;
+          padding: 0.7rem;
+          width: 100px;
+          color: #fff;
+          border-radius: 0.7rem;
+          cursor: pointer;
+          background-color: #d13291;
+        }
+      }
+
+      &_moon {
+        position: absolute;
+        right: 5rem;
+        width: 20vw;
+        height: auto;
+        animation: 2.2s ease-out forwards, rotateMoonEl 8s linear infinite 0.4s;
+        filter: drop-shadow(0 0 25px #ffffff4d);
+
+        img {
+          width: inherit;
+          height: inherit;
+        }
+      }
+    }
+
+    @keyframes rotateMoonEl {
+      to {
+        transform: rotate(360deg);
+      }
     }
   }
 }
