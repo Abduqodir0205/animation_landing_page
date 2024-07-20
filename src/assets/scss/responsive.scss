@@ -193,6 +193,25 @@
         }
       }
     }
+
+    .bannerHiring{
+      &__content{
+        div:first-child{
+          width: 100% !important;
+        }
+
+        div:last-child{
+          width: 100% !important;
+          ul{
+            li{
+              display: flex !important; 
+              align-items: center !important;
+              justify-content: center !important; 
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -337,6 +356,31 @@
         background: #0d0d0d;
         display: flex;
         flex-direction: column;
+      }
+    }
+
+    .bannerHiring{
+      &__content{
+        display: flex !important;
+        justify-content: center !important;
+        padding: .3rem !important;
+        div:first-child{
+          h1{
+            font-size: 4.4vw !important;
+          }
+          p{
+            font-size: 3.3vw !important;
+          }
+        }
+
+        div:last-child{
+          ul{
+            padding: 0 !important;
+            li{
+              font-size: 3.3vw !important;
+            }
+          }
+        }
       }
     }
   }

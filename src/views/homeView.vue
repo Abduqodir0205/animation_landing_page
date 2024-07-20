@@ -1,61 +1,13 @@
 <script>
-import navbar from "./components/navbar.vue";
-import hamburger from "./components/hamburger.vue";
-import { translate } from "./translate.js";
-import Sidebar from "./components/sidebar.vue";
+
 
 export default {
-  data() {
-    return {
-      /* 
-        AbdiqodirDev.
-
-        7/14/2024 14:04   
-
-        for tsiklda chiqarmoqchi bo'lgan rasmlar chiqmadi. Mani fikrimcha tsikl to'g'ri ishlayapti va rasmni src ga to'g'ri manzil boryapti.
-      
-      */
-      // cards: [
-      //   {url: "/assets/images/png/card1.png"},
-      //   {url: "/assets/images/png/card2.png"},
-      //   {url: "/assets/images/png/card3.png"},
-      //   {url: "/assets/images/png/card4.png"}
-      // ]
-    };
-  },
-  name: "HeroSection",
-  components: {
-    navbar,
-    hamburger,
-    Sidebar,
-  },
-  // mounted() {
-  //   window.scrollTo(0, 100);
-  // },
-  methods: {
-    handleLanguageChange(language) {
-      this.$forceUpdate(); // Re-render the component to update translations
-    },
-    t(key) {
-      return translate(key);
-    },
-    // getCardImage(card) {
-    //   try {
-    //     console.log(card)
-    //     return card;
-    //   } catch (error) {
-    //     console.log(card)
-    //     console.error(card);
-    //     return '';
-    //   }
-    // },
-  },
+  
 };
 </script>
 
 <template>
-  <navbar @languageChanged="handleLanguageChange" @toggle-modal="toggleModal" />
-  <header>
+    <header>
     <div class="container"></div>
     <div class="hero">
       <div class="stars"></div>
@@ -73,8 +25,7 @@ export default {
       </div>
     </div>
   </header>
-  <main>
-    <div class="container">
+  <div class="container">
       <section class="section1">
         <div class="section1__box">
           <h1>
@@ -251,7 +202,6 @@ export default {
         </div>
       </section>
     </div>
-  </main>
 </template>
 
 <style scoped lang="scss">
@@ -363,6 +313,7 @@ header {
     transform: translateX(-50%) rotate(360deg);
   }
 }
+
 main {
   margin-top: 10rem;
 
@@ -475,7 +426,7 @@ main {
       border-radius: 1rem;
       overflow: hidden;
       transition: transform 0.3s ease;
-      background: url("./assets/images/png/card1.png");
+      background: url("../assets/images/png/card1.png");
       cursor: pointer;
       transition: background 0.3s ease; /* Add transition for smooth gradient change */
       &:hover {
@@ -485,7 +436,7 @@ main {
             rgba(255, 192, 203, 0) 36% 66%,
             #d132917c
           ),
-          url("./assets/images/png/card1.png");
+          url("../assets/images/png/card1.png");
       }
       img {
         width: 100%;
@@ -623,7 +574,7 @@ main {
       }
       &::after {
         content: "";
-        background-image: url(./assets/images/png/Planet.png);
+        background-image: url(../assets/images/png/Planet.png);
         position: absolute;
         background-repeat: no-repeat;
         background-position: bottom;
@@ -705,7 +656,8 @@ main {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      background: var(--color-dark-secondary);
+      flex-wrap: wrap;
+      background: #0d0d0d;
       border-radius: 1.5rem;
       gap: 2rem;
       div:nth-child(2) {
@@ -717,6 +669,7 @@ main {
           grid-gap: 1rem;
           gap: 1rem ;
           li {
+            cursor: pointer;
             padding: 1rem 1.5rem;
             border-color: #504f4f;
             color: #818181;
